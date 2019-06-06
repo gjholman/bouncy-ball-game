@@ -10,7 +10,7 @@
 #include "global_vars.h"
 #include <SFML/Graphics.hpp>
 
-#define DOWN_ACCEL 0.005f
+#define DOWN_ACCEL 1.0f
 #define RADIUS 50.f
 
 // sf::Color green = sf::Color(100, 250, 50);
@@ -26,7 +26,7 @@ private:
 
 public:
     Ball() {
-        this->dx = 0.25f;
+        this->dx = 3.f;
         this->ball = sf::CircleShape(50.f);
         this->ball.setFillColor(sf::Color(100, 250, 50));
         this->ball.setOrigin(ball.getRadius(), ball.getRadius()); // set origin to center of ball

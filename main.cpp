@@ -12,6 +12,7 @@
 
 unsigned int gWindowHeight = 1024;
 unsigned int gWindowWidth = 1024;
+unsigned int fps = 60;
 
 // sf::Color green = sf::Color(100, 250, 50);
 
@@ -33,6 +34,8 @@ int main(int argc, const char *argv[]) {
 
     sf::RenderWindow window(sf::VideoMode(gWindowWidth, gWindowHeight),
                       "Bouncy Ball");
+    
+    window.setFramerateLimit(fps);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -55,8 +58,6 @@ int main(int argc, const char *argv[]) {
         window.display();
         
         myBall.update();
-        
-        //TODO apply waiting function to regulate how often things happen
     }
 
     std::cout << "End of game"
