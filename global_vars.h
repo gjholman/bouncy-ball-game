@@ -11,5 +11,6 @@
 
 extern unsigned int gWindowHeight;
 extern unsigned int gWindowWidth;
+extern unsigned int fps;
 
 #endif /* global_vars_h */
