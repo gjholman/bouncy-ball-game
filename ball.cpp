@@ -13,6 +13,9 @@
 #define DOWN_ACCEL 1.0f
 #define RADIUS 50.f
 
+#define STANDARD_DX 10.f
+#define STANDARD_DY 20.0f
+
 // sf::Color green = sf::Color(100, 250, 50);
 
 class Ball {
@@ -23,14 +26,16 @@ private:
     float leftBound = RADIUS;
     float lowerBound = gWindowHeight - RADIUS;
     float upperBound = RADIUS;
+    bool shouldBounceLeft;
 
 public:
     Ball() {
         this->dx = 3.f;
-        this->ball = sf::CircleShape(50.f);
+        this->ball = sf::CircleShape(RADIUS);
         this->ball.setFillColor(sf::Color(100, 250, 50));
         this->ball.setOrigin(ball.getRadius(), ball.getRadius()); // set origin to center of ball
         this->ball.setPosition(gWindowWidth / 2, gWindowHeight / 2);
+        this->shouldBounceLeft = false;
     }
 //    float getX() { return this->x; }
 //    float getY() { return this->y; }
@@ -60,4 +65,22 @@ public:
         dy += DOWN_ACCEL;
         
     }
+    
+    void bounce() {
+        if(shouldBounceLeft) {
+            this->bounceLeft();
+        } else {
+            this->bounceRight();
+        }
+        this->shouldBounceLeft = !this->shouldBounceLeft;
+    }
+    void bounceLeft() {
+        this->dx = -1 * STANDARD_DX;
+        this->dy = -1 * STANDARD_DY;
+    }
+    void bounceRight() {
+        this->dx = STANDARD_DX;
+        this->dy = -1 * STANDARD_DY;
+    }
+    
 };
