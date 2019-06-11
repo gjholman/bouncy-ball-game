@@ -14,28 +14,17 @@ unsigned int gWindowHeight = 1024;
 unsigned int gWindowWidth = 1024;
 unsigned int fps = 60;
 
-// sf::Color green = sf::Color(100, 250, 50);
-
-void draw() {
-  // Draw each object
-}
-
-void update() {
-  // update position of ball, calling the ball.update() method
-}
-
 int main(int argc, const char *argv[]) {
 
     // Local objects
-//    sf::CircleShape ball(50.0f);
-//    ball.setOrigin(50.f, 50.f);
-//    ball.setFillColor(green);
     Ball myBall = Ball();
 
     sf::RenderWindow window(sf::VideoMode(gWindowWidth, gWindowHeight),
                       "Bouncy Ball");
     
     window.setFramerateLimit(fps);
+    
+    bool readyForInput = true;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -49,6 +38,15 @@ int main(int argc, const char *argv[]) {
                     break;
             }
         }
+        
+        if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            readyForInput = true;
+        }
+        
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && readyForInput) {
+            myBall.bounce();
+            readyForInput = false;
+        }
 
         window.clear();
 
@@ -60,8 +58,7 @@ int main(int argc, const char *argv[]) {
         myBall.update();
     }
 
-    std::cout << "End of game"
-        << "\n";
+    std::cout << "End of game" << "\n";
 
     return EXIT_SUCCESS;
 }
