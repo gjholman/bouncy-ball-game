@@ -26,6 +26,7 @@ private:
     float leftBound = RADIUS;
     float lowerBound = gWindowHeight - RADIUS;
     float upperBound = RADIUS;
+    float bounceFriction = 0.8f;
     bool shouldBounceLeft;
 
 public:
@@ -46,19 +47,19 @@ public:
         sf::Vector2f position = this->ball.getPosition();
         if (position.x < leftBound) {
             this->ball.setPosition(leftBound, position.y);
-            dx = dx * (-1.f);
+            dx = dx * (-1.f) * bounceFriction;
         }
         else if(position.x > rightBound) {
             this->ball.setPosition(rightBound, position.y);
-            dx = dx * (-1.f);
+            dx = dx * (-1.f) * bounceFriction;
         }
         if (position.y < upperBound) {
             this->ball.setPosition(position.x, upperBound);
-            dy = dy * (-1.f);
+            dy = dy * (-1.f) * bounceFriction;
         }
         else if (position.y > lowerBound) {
             this->ball.setPosition(position.x, lowerBound);
-            dy = dy * (-1.f);
+            dy = dy * (-1.f) * bounceFriction;
 
         }
         
